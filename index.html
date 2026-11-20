@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title> Smart Cafeteria Portal</title>
+<link href="./index.css/Cafeteria.css" rel="stylesheet"/>
+<script src="cafeteria.js" defer></script>
+</head>
+<body>
+<header>
+<h1> Smart Cafeteria Portal</h1>
+<p> Welcome to our cafeteria Portal.</p>
+</header>
+<nav>
+<ul>
+<li> <a href="#home"> Home </a></li>
+<li> <a href="#menu"> Menu </a></li>
+<li> <a href="#wallet"> Wallet </a></li>
+<li> <a href="#cart-section"> My Cart </a> </li>
+<li> <a href ="#checkout-details"> Checkout </a></li>
+<li> <a href="#token-section"> Token </a> </li>
+<li> <a href="#reviews-section"> Reviews </a> </li>
+<li> <a href="#contact"> Contact </a></li>
+</ul>
+</nav>
+<hr/>
+<div class="card" id="occupancy-widget">
+<h3>Cafeteria Status</h3>
+<p>Current Occupancy: <span id="occupancy-text">Loading...</span></p>
+<div class="progress-bar-container">
+<div id="occupancy-fill" style="width: 0%;"></div>
+</div>
+</div>
+<hr/>
+<main id="home">
+<h2> Home</h2>
+<p> Welcome to our cafeteria portal. Here you can find information about our menu, your meal wallet, and contact details.</p>
+<hr/>
+<section id="wallet">
+<h2> Employee Meal Wallet</h2>
+<div id="wallet-section">
+<p>Your Available balance is Rs. <span id="wallet-balance">500</span></p>
+<button id="recharge-btn">Recharge Wallet (+₹500)</button>
+</div>
+</section>
+<hr/>
+<aside id="cart-section">
+<h3>Your Food Cart</h3>
+<ul id="cart-items-list">
+<!-- JS will populate selected items here -->
+</ul>
+<p> <b> Total calories:  Kcal </b></p>
+<p> <em> <b> NOTE:</b> The amount of calories mentioned are approximate and may vary according to customisation.</em></p>
+<p>Total: Rs. <span id="cart-total">0</span></p>
+<button id="checkout-btn">Proceed to Checkout</button>
+</aside>
+<hr/>
+
+<section id="checkout-details" class="checkout-panel hidden">
+    <h2>Checkout Details</h2>
+    <p>Enter your contact details and choose when you want to collect your order.</p>
+    <div id="checkout-order-summary" class="checkout-summary"></div>
+    <form id="checkout-form">
+        <label for="customer-name">Full Name</label>
+        <input id="customer-name" name="customerName" type="text" placeholder="Enter your full name" required minlength="2">
+
+        <label for="customer-email">Email Address</label>
+        <input id="customer-email" name="customerEmail" type="email" placeholder="Enter your email address" required>
+
+        <label for="customer-phone">Phone Number</label>
+        <input id="customer-phone" name="customerPhone" type="tel" placeholder="10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+
+        <label for="pickup-slot">Select Pickup Date</label>
+        <input id="pickup-date" name="pickupDate" type="date" required>
+
+        <label for="pickup-slot">Select Pickup Time Slot</label>
+        <select id="pickup-slot" name="pickupSlot" required>
+            <option value="">Choose a time slot</option>
+            <option value="10:00 AM - 10:30 AM">10:00 AM - 10:30 AM</option>
+            <option value="10:30 AM - 11:00 AM">10:30 AM - 11:00 AM</option>
+            <option value="11:00 AM - 11:30 AM">11:00 AM - 11:30 AM</option>
+            <option value="11:30 AM - 12:00 PM">11:30 AM - 12:00 PM</option>
+            <option value="12:00 PM - 12:30 PM">12:00 PM - 12:30 PM</option>
+            <option value="12:30 PM - 1:00 PM">12:30 PM - 1:00 PM</option>
+            <option value="1:00 PM - 1:30 PM">1:00 PM - 1:30 PM</option>
+            <option value="1:30 PM - 2:00 PM">1:30 PM - 2:00 PM</option>
+            <option value="2:00 PM - 2:30 PM">2:00 PM - 2:30 PM</option>
+        </select>
+
+        <label for="order-customisation">Customisation / Instructions (optional)</label>
+        <textarea id="order-customisation" name="customisation" rows="3" placeholder="Any special instructions?"></textarea>
+
+        <button type="submit">Confirm Order</button>
+        <button type="button" id="cancel-checkout" class="secondary-button">Back to Cart</button>
+    </form>
+</section>
+<section id="menu">
+<h2> Cafeteria Menu</h2>
+<article>
+<h2> Snacks </h2>
+<ul type="circle">
+<li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Pani Puri" data-price="20"> <img alt="Pani Puri" height="100" src="images/panipuri.jpg" width="100"/> Pani Puri - Rs. 20<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-pani-puri">Qty:</label>
+<input class="qty-input" id="qty-pani-puri" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Vegetarian" data-name="Dahi Puri" data-price="30"> <img alt="Dahi Puri" height="100" src="images/dahipuri.jpg" width="100"/> Dahi Puri - Rs. 30<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-dahi-puri">Qty:</label>
+<input class="qty-input" id="qty-dahi-puri" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="342" data-diet="Vegetarian" data-name="Sev Puri" data-price="25"> <img alt="Sev Puri" height="100" src="images/sevpuri.jpg" width="100"/> Sev Puri - Rs. 25<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-sev-puri">Qty:</label>
+<input class="qty-input" id="qty-sev-puri" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">342 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Vegetarian" data-name="Bhel Puri" data-price="30"> <img alt="Bhel Puri" height="100" src="images/bhelPuri.jpg" width="100"/> Bhel Puri - Rs. 30<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-bhel-puri">Qty:</label>
+<input class="qty-input" id="qty-bhel-puri" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="400" data-diet="Vegetarian" data-name="Pav Bhaji" data-price="50"> <img alt="Pav Bhaji" height="100" src="images/pavbhaji.jpg" width="100"/> Pav Bhaji - Rs. 50<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-pav-bhaji">Qty:</label>
+<input class="qty-input" id="qty-pav-bhaji" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">400 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Vegetarian" data-name="Vada Pav" data-price="20"> <img alt="Vada Pav" height="100" src="images/vadapav.jpg" width="100"/> Vada Pav - Rs. 20<form action="#" class="item-form" method="get" style="display:inline;"><label for="qty-vada-pav">Qty: </label>
+<input class="qty-input" id="qty-vada-pav" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="312" data-diet="Vegetarian" data-name="French Fries" data-price="40"><img alt="French Fries" height="100" src="images/frenchfries.jpg" width="100"/> French Fries - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-french-fries">Qty:</label>
+<input class="qty-input" id="qty-french-fries" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">312 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="276" data-diet="Vegetarian" data-name="Onion Rings" data-price="50"><img alt="Onion Rings" height="100" src="images/onionrings.jpg" width="100"/> Onion Rings - Rs. 50<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-onion-rings">Qty:</label>
+<input class="qty-input" id="qty-onion-rings" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">276 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="420" data-diet="Vegetarian" data-name="Grilled Sandwich" data-price="60"> <img alt="Grilled Sandwich" height="100" src="images/grilledsandwich.jpg" width="100"/> Grilled Sandwich - Rs. 60<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-grilled-sandwich">Qty:</label>
+<input class="qty-input" id="qty-grilled-sandwich" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">420 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article>
+<section>
+<h2> Main Course</h2>
+<section>
+<article>
+<h3> South Indian</h3>
+<h4> Vegetarian </h4>
+<ul type="circle">
+<li class="food-item" data-calories="40" data-diet="Vegetarian" data-name="Plain Idli" data-price="20"><img alt="Plain Idli" height="100" src="images/plainidli.jpg" width="100"/> Plain Idli - Rs. 20<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-plain-idli">Qty:</label>
+<input class="qty-input" id="qty-plain-idli" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">40 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="200" data-diet="Vegetarian" data-name="Masala Idli" data-price="30"> <img alt="Masala Idli" height="100" src="images/masalaidli.jpg" width="100"/> Masala Idli - Rs. 30<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-masala-idli">Qty:</label>
+<input class="qty-input" id="qty-masala-idli" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">200 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="795" data-diet="Vegetarian" data-name="Fried Idli" data-price="50"> <img alt="Fried Idli" height="100" src="images/friedidli.jpg" width="100"/> Fried Idli - Rs. 50<form action="#" class="item-form" method="get"><label for="qty-fried-idli">Qty:</label><input class="qty-input" id="qty-fried-idli" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/><button type="button">Add to Cart</button><button type="button">Order</button></form><span class="calories">795 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="116" data-diet="Vegetarian" data-name="Plain Dosa" data-price="130"> <img alt="Plain Dosa" height="100" src="images/Butter Plain Dosa.jpg" width="100"/> Plain Dosa - Rs. 130<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-plain-dosa">Qty:</label>
+<input class="qty-input" id="qty-plain-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">116 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="200" data-diet="Vegetarian" data-name="Masala Dosa" data-price="140"> <img alt="Masala Dosa" height="100" src="images/MasalaDosai.jpg" width="100"/> Masala Dosa - Rs. 140<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-masala-dosa">Qty:</label>
+<input class="qty-input" id="qty-masala-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">200 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="180" data-diet="Vegetarian" data-name="Onion Dosa" data-price="135"> <img alt="Onion Dosa" height="100" src="images/oniondosa.jpg" width="100"/> Onion Dosa - Rs. 135<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-onion-dosa">Qty:</label>
+<input class="qty-input" id="qty-onion-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">180 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Rava Dosa" data-price="145"> <img alt="Rava Dosa" height="100" src="images/ravadosa.jpg" width="100"/> Rava Dosa - Rs. 145<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-rava-dosa">Qty:</label>
+<input class="qty-input" id="qty-rava-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Paper Dosa" data-price="130"> <img alt="Paper Dosa" height="100" src="images/paperdosa.jpg" width="100"/> Paper Dosa - Rs. 130<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-paper-dosa">Qty:</label>
+<input class="qty-input" id="qty-paper-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="80" data-diet="Vegetarian" data-name="Set Dosa" data-price="150"> <img alt="Set Dosa" height="100" src="images/Set Dosa.jpg" width="100"/> Set Dosa - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-set-dosa">Qty:</label>
+<input class="qty-input" id="qty-set-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">80 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="750" data-diet="Vegetarian" data-name="Ghee Roast Dosa" data-price="160"> <img alt="Ghee Roast Dosa" height="100" src="images/gheedosa.jpg" width="100"/> Ghee Roast Dosa - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-ghee-roast-dosa">Qty:</label>
+<input class="qty-input" id="qty-ghee-roast-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">750 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="170" data-diet="Vegetarian" data-name="Vada" data-price="250"> <img alt="Vada" height="100" src="images/vada.jpg" width="100"/> Vada - Rs. 250<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-vada">Qty:</label>
+<input class="qty-input" id="qty-vada" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">170 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="300" data-diet="Vegetarian" data-name="Pongal" data-price="120"> <img alt="Pongal" height="100" src="images/pongal.jpg" width="100"/> Pongal - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-pongal">Qty:</label>
+<input class="qty-input" id="qty-pongal" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">300 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Upma" data-price="100"> <img alt="Upma" height="100" src="images/Uppuma.jpg" width="100"/> Upma - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-upma">Qty:</label>
+<input class="qty-input" id="qty-upma" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Rasam" data-price="80"><img alt="Rasam" height="100" src="images/rasam.jpg" width="100"/> Rasam - Rs. 80<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-rasam">Qty:</label>
+<input class="qty-input" id="qty-rasam" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="160" data-diet="Vegetarian" data-name="Uttapam" data-price="110"><img alt="Uttapam" height="100" src="images/uttapam.jpg" width="100"/> Uttapam - Rs. 110<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-uttapam">Qty:</label>
+<input class="qty-input" id="qty-uttapam" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">160 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Sambar" data-price="90"><img alt="Sambar" height="100" src="images/sambar.jpg" width="100"/> Sambar - Rs. 90<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-sambar">Qty:</label>
+<input class="qty-input" id="qty-sambar" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article>
+<article>
+<h4> Non-Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="186" data-diet="non Vegetarian" data-name="Egg Dosa" data-price="150"> <img alt="Egg Dosa" height="100" src="images/Egg Dosa.jpg" width="100"/> Egg Dosa - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-egg-dosa">Qty:</label>
+<input class="qty-input" id="qty-egg-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">186 kcal</span><span class="diet-tag non veg">non Vegetarian</span></li><li class="food-item" data-calories="350" data-diet="non Vegetarian" data-name="Egg Rava Dosa" data-price="160"> <img alt="Egg Rava Dosa" height="100" src="images/eggmasaladosa.jpg" width="100"/> Egg Rava Dosa - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-egg-rava-dosa">Qty:</label>
+<input class="qty-input" id="qty-egg-rava-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">350 kcal</span><span class="diet-tag non veg">non Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Non-Vegetarian" data-name="Egg Onion Dosa" data-price="155"> <img alt="Egg Onion Dosa" height="100" src="images/eggoniondosa(2).jpg" width="100"/> Egg Onion Dosa - Rs. 155<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-egg-onion-dosa">Qty:</label>
+<input class="qty-input" id="qty-egg-onion-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag nonveg">Non-Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Non-Vegetarian" data-name="Egg Paper Dosa" data-price="150"> <img alt="Egg Paper Dosa" height="100" src="images/paperdosa.jpg" width="100"/> Egg Paper Dosa - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-egg-paper-dosa">Qty:</label>
+<input class="qty-input" id="qty-egg-paper-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag nonveg">Non-Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Non-Vegetarian" data-name="Egg Set Dosa" data-price="170"> <img alt="Egg Set Dosa" height="100" src="images/Set Dosa.jpg" width="100"/> Egg Set Dosa - Rs. 170<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-egg-set-dosa">Qty:</label>
+<input class="qty-input" id="qty-egg-set-dosa" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag nonveg">Non-Vegetarian</span></li></ul>
+</article>
+</section><section>
+<h3> North Indian</h3><article>
+<h4> Vegetarian </h4>
+<ul type="circle">
+<li class="food-item" data-calories="860" data-diet="Vegetarian" data-name="Chole Bhature" data-price="150"><img alt="Chole Bhature" height="100" src="images/cholebhature.jpg" width="100"/> Chole Bhature - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chole-bhature">Qty:</label>
+<input class="qty-input" id="qty-chole-bhature" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">860 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="242" data-diet="Vegetarian" data-name="Aloo Paratha" data-price="100"> <img alt="Aloo Paratha" height="100" src="images/alooparatha.jpg" width="100"/> Aloo Paratha - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-aloo-paratha">Qty:</label>
+<input class="qty-input" id="qty-aloo-paratha" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">242 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="212" data-diet="Vegetarian" data-name="Gobi Paratha" data-price="120"> <img alt="Gobi Paratha" height="100" src="images/gobiparatha.jpg" width="100"/> Gobi Paratha - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-gobi-paratha">Qty:</label>
+<input class="qty-input" id="qty-gobi-paratha" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">212 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="319" data-diet="Vegetarian" data-name="Paneer Paratha" data-price="150"> <img alt="Paneer Paratha" height="100" src="images/paneerparatha.jpg" width="100"/> Paneer Paratha - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-paneer-paratha">Qty:</label>
+<input class="qty-input" id="qty-paneer-paratha" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">319 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="325" data-diet="Vegetarian" data-name="Rajma Chawal" data-price="130"> <img alt="Rajma Chawal" height="100" src="images/rajmachawal.jpg" width="100"/> Rajma Chawal - Rs. 130<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-rajma-chawal">Qty:</label>
+<input class="qty-input" id="qty-rajma-chawal" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">325 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="330" data-diet="Vegetarian" data-name="Curry Chawal" data-price="120"> <img alt="Curry Chawal" height="100" src="images/currychawal.jpg" width="100"/> Curry Chawal - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-curry-chawal">Qty:</label>
+<input class="qty-input" id="qty-curry-chawal" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">330 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="213" data-diet="Vegetarian" data-name="Dal Makhani" data-price="140"> <img alt="Dal Makhani" height="100" src="images/dalmakhani.jpg" width="100"/> Dal Makhani - Rs. 140<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-dal-makhani">Qty:</label>
+<input class="qty-input" id="qty-dal-makhani" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">213 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="175" data-diet="Vegetarian" data-name="Dal fry" data-price="100"> <img alt="Dal fry" height="100" src="images/dalfry….jpg" width="100"/> Dal fry - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-dal-fry">Qty:</label>
+<input class="qty-input" id="qty-dal-fry" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">175 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="310" data-diet="Vegetarian" data-name="Paneer Butter Masala" data-price="160"> <img alt="Paneer Butter Masala" height="100" src="images/paneerbuttermasala.jpg" width="100"/> Paneer Butter Masala - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-paneer-butter-masala">Qty:</label>
+<input class="qty-input" id="qty-paneer-butter-masala" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">310 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Vegetarian" data-name="Shahi Paneer" data-price="180"> <img alt="Shahi Paneer" height="100" src="images/shahipaneer.jpg" width="100"/> Shahi Paneer - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-shahi-paneer">Qty:</label>
+<input class="qty-input" id="qty-shahi-paneer" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Vegetarian" data-name="Palak Paneer" data-price="170"> <img alt="Palak Paneer" height="100" src="images/palakpaneer.jpg" width="100"/> Palak Paneer - Rs. 170<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-palak-paneer">Qty:</label>
+<input class="qty-input" id="qty-palak-paneer" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="280" data-diet="Vegetarian" data-name="Malai Kofta" data-price="160"> <img alt="Malai Kofta" height="100" src="images/malaikofta.jpg" width="100"/> Malai Kofta - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-malai-kofta">Qty:</label>
+<input class="qty-input" id="qty-malai-kofta" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">280 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="130" data-diet="Vegetarian" data-name="Plain Rice" data-price="50"> <img alt="Plain Rice" height="100" src="images/plainrice.jpg" width="100"/> Plain Rice - Rs. 50<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-plain-rice">Qty:</label>
+<input class="qty-input" id="qty-plain-rice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">130 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="172" data-diet="Vegetarian" data-name="Jeera Rice" data-price="60"> <img alt="Jeera Rice" height="100" src="images/jeera rice.jpg" width="100"/> Jeera Rice - Rs. 60<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-jeera-rice">Qty:</label>
+<input class="qty-input" id="qty-jeera-rice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">172 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article><article>
+<h4> Non-Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="140" data-diet="Non-Vegetarian" data-name="Chicken Biryani" data-price="200"> <img alt="Chicken Biryani" height="100" src="images/chickenbiryani.jpg" width="100"/> Chicken Biryani - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-biryani">Qty:</label>
+<input class="qty-input" id="qty-chicken-biryani" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">140 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="180" data-diet="Non-Vegetarian" data-name="Butter Chicken" data-price="200"> <img alt="Butter Chicken" height="100" src="images/butterchicken.jpg" width="100"/> Butter Chicken - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-butter-chicken">Qty:</label>
+<input class="qty-input" id="qty-butter-chicken" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">180 kcal</span><span class="diet-tag non veg">Non-Vegetarian</span></li><li class="food-item" data-calories="180" data-diet="Non-Vegetarian" data-name="Rogan Josh" data-price="220"> <img alt="Rogan Josh" height="100" src="images/roganjosh.jpg" width="100"/> Rogan Josh - Rs. 220<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-rogan-josh">Qty:</label>
+<input class="qty-input" id="qty-rogan-josh" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">180 kcal</span><span class="diet-tag non veg">Non-Vegetarian</span></li><li class="food-item" data-calories="580" data-diet="Non-Vegetarian" data-name="Mutton curry" data-price="250"> <img alt="Mutton curry" height="100" src="images/muttoncurry.jpg" width="100"/> Mutton curry - Rs. 250<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-mutton-curry">Qty:</label>
+<input class="qty-input" id="qty-mutton-curry" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">580 kcal</span><span class="diet-tag non veg">Non-Vegetarian</span></li></ul>
+<h4> Bread</h4>
+<ul>
+<li class="food-item" data-calories="300" data-diet="Vegetarian" data-name="Butter Naan" data-price="40"> <img alt="Butter Naan" height="100" src="images/garlicbutternaan.jpg" width="100"/> Butter Naan - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-butter-naan">Qty:</label>
+<input class="qty-input" id="qty-butter-naan" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">300 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="262" data-diet="Vegetarian" data-name="Plain Naan" data-price="30"> <img alt="Plain Naan" height="100" src="images/plainnaan.jpg" width="100"/> Plain Naan - Rs. 30<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-plain-naan">Qty:</label>
+<input class="qty-input" id="qty-plain-naan" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">262 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="300" data-diet="Vegetarian" data-name="Garlic Naan" data-price="50"> <img alt="Garlic Naan" height="100" src="images/garlicbutternaan (2).jpg" width="100"/> Garlic Naan - Rs. 50<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-garlic-naan">Qty:</label>
+<input class="qty-input" id="qty-garlic-naan" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">300 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="85" data-diet="Vegetarian" data-name="Roti" data-price="20"> <img alt="Roti" height="100" src="images/roti.jpg" width="100"/> Roti - Rs. 20<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-roti">Qty:</label>
+<input class="qty-input" id="qty-roti" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">85 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article></section></section><section>
+<h3> Chinese</h3>
+<h4> Vegetarian</h4><article>
+<ul type="circle">
+<li class="food-item" data-calories="370" data-diet="Vegetarian" data-name="Veg Hakka Noodles" data-price="120"> <img alt="Veg Hakka Noodles" height="100" src="images/veghakkanoodle.jpg" width="100"/> Veg Hakka Noodles - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-hakka-noodles">Qty:</label>
+<input class="qty-input" id="qty-veg-hakka-noodles" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">370 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="400" data-diet="Vegetarian" data-name="Chilli Garlic Noodles" data-price="140"> <img alt="Chilli Garlic Noodles" height="100" src="images/chilligarlicnoodles.jpg" width="100"/> Chilli Garlic Noodles - Rs. 140<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chilli-garlic-noodles">Qty:</label>
+<input class="qty-input" id="qty-chilli-garlic-noodles" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">400 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="280" data-diet="Vegetarian" data-name="Veg Manchurian" data-price="130"> <img alt="Veg Manchurian" height="100" src="images/Veg Manchurian!.jpg" width="100"/> Veg Manchurian - Rs. 130<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-manchurian">Qty:</label>
+<input class="qty-input" id="qty-veg-manchurian" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">280 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="290" data-diet="Vegetarian" data-name="Veg Fried Rice" data-price="110"> <img alt="Veg Fried Rice" height="100" src="images/vegfriedrice.jpg" width="100"/> Veg Fried Rice - Rs. 110<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-fried-rice">Qty:</label>
+<input class="qty-input" id="qty-veg-fried-rice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">290 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Schezwan Noodles" data-price="140"> <img alt="Schezwan Noodles" height="100" src="images/schezwan noodles.jpg" width="100"/> Schezwan Noodles - Rs. 140<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-schezwan-noodles">Qty:</label>
+<input class="qty-input" id="qty-schezwan-noodles" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="290" data-diet="Vegetarian" data-name="Schezwan Fried Rice" data-price="150"> <img alt="Schezwan Fried Rice" height="100" src="images/vegfriedrice.jpg" width="100"/> Schezwan Fried Rice - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-schezwan-fried-rice">Qty:</label>
+<input class="qty-input" id="qty-schezwan-fried-rice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">290 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Veg Spring Rolls" data-price="100"> <img alt="Veg Spring Rolls" height="100" src="images/springroll.jpg" width="100"/> Veg Spring Rolls - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-spring-rolls">Qty:</label>
+<input class="qty-input" id="qty-veg-spring-rolls" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="100" data-diet="Vegetarian" data-name="Veg Momos" data-price="120"> <img alt="Veg Momos" height="100" src="images/momos.jpg" width="100"/> Veg Momos - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-momos">Qty:</label>
+<input class="qty-input" id="qty-veg-momos" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">100 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="350" data-diet="Vegetarian" data-name="Chilli Paneer" data-price="220"> <img alt="Chilli Paneer" height="100" src="images/chillipaneer.jpg" width="100"/> Chilli Paneer - Rs. 220<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chilli-paneer">Qty:</label>
+<input class="qty-input" id="qty-chilli-paneer" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">350 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="435" data-diet="Vegetarian" data-name="Honey Chilli Potato" data-price="120"> <img alt="Honey Chilli Potato" height="100" src="images/honeychillipotato.jpg" width="100"/> Honey Chilli Potato - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-honey-chilli-potato">Qty:</label>
+<input class="qty-input" id="qty-honey-chilli-potato" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">435 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="200" data-diet="Vegetarian" data-name="Crispy corn" data-price="100"> <img alt="Crispy corn" height="100" src="images/crispycorn.jpg" width="100"/> Crispy corn - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-crispy-corn">Qty:</label>
+<input class="qty-input" id="qty-crispy-corn" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">200 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+<h4> Non-Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="350" data-diet="Non-Vegetarian" data-name="Non-Veg Hakka Noodles" data-price="150"> <img alt="Non-Veg Hakka Noodles" height="100" src="images/chickenhakkanoodles.jpg" width="100"/> Non-Veg Hakka Noodles - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-non-veg-hakka-noodles">Qty:</label>
+<input class="qty-input" id="qty-non-veg-hakka-noodles" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">350 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="330" data-diet="Non-Vegetarian" data-name="Non-Veg Manchurian" data-price="160"> <img alt="Non-Veg Manchurian" height="100" src="images/chickenmanchrian.jpg" width="100"/> Non-Veg Manchurian - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-non-veg-manchurian">Qty:</label>
+<input class="qty-input" id="qty-non-veg-manchurian" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">330 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="340" data-diet="Non-Vegetarian" data-name="Non-Veg Fried Rice" data-price="140"> <img alt="Non-Veg Fried Rice" height="100" src="images/chickenfriedrice.jpg" width="100"/> Non-Veg Fried Rice - Rs. 140<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-non-veg-fried-rice">Qty:</label>
+<input class="qty-input" id="qty-non-veg-fried-rice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">340 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="40" data-diet="Non-Vegetarian" data-name="Non-Veg Momos" data-price="150"> <img alt="Non-Veg Momos" height="100" src="images/chickenmomos.jpg" width="100"/> Non-Veg Momos - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-non-veg-momos">Qty:</label>
+<input class="qty-input" id="qty-non-veg-momos" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">40 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li></ul>
+</article></section><section>
+<h3> Thai </h3>
+<article>
+<h4> Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="294" data-diet="Vegetarian" data-name="Veg Green Curry" data-price="150"> <img alt="Veg Green Curry" height="100" src="images/veggreencurry.jpg" width="100"/> Veg Green Curry - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-green-curry">Qty:</label>
+<input class="qty-input" id="qty-veg-green-curry" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">294 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="237" data-diet="Vegetarian" data-name="Veg Red Curry" data-price="170"> <img alt="Veg Red Curry" height="100" src="images/vegredcurry.jpg" width="100"/> Veg Red Curry - Rs. 170<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-red-curry">Qty:</label>
+<input class="qty-input" id="qty-veg-red-curry" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">237 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Vegetarian" data-name="Pad Thai" data-price="180"> <img alt="Pad Thai" height="100" src="images/Pad Thai.jpg" width="100"/> Pad Thai - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-pad-thai">Qty:</label>
+<input class="qty-input" id="qty-pad-thai" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="350" data-diet="Vegetarian" data-name="Thai Basil Fried Rice" data-price="160"> <img alt="Thai Basil Fried Rice" height="100" src="images/basilfriedrice.jpg" width="100"/> Thai Basil Fried Rice - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-thai-basil-fried-rice">Qty:</label>
+<input class="qty-input" id="qty-thai-basil-fried-rice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">350 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+<h4> Non-Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="341" data-diet="Non-Vegetarian" data-name="Chicken Green Curry" data-price="180"> <img alt="Chicken Green Curry" height="100" src="images/greencurry.jpg" width="100"/> Chicken Green Curry - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-green-curry">Qty:</label>
+<input class="qty-input" id="qty-chicken-green-curry" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">341 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="334" data-diet="Non-Vegetarian" data-name="Chicken Massaman Curry" data-price="190"> <img alt="Chicken Massaman Curry" height="100" src="images/Massaman Curry.jpg" width="100"/> Chicken Massaman Curry - Rs. 190<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-massaman-curry">Qty:</label>
+<input class="qty-input" id="qty-chicken-massaman-curry" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">334 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li></ul>
+</article>
+</section><section>
+<h3> Japanese </h3>
+<article>
+<h4> Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="176" data-diet="Vegetarian" data-name="Veg Sushi" data-price="200"> <img alt="Veg Sushi" height="100" src="images/vegsushi.jpg" width="100"/> Veg Sushi - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-sushi">Qty:</label>
+<input class="qty-input" id="qty-veg-sushi" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">176 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="700" data-diet="Vegetarian" data-name="Veg Ramen" data-price="180"> <img alt="Veg Ramen" height="100" src="images/vegramen (2).jpg" width="100"/> Veg Ramen - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-ramen">Qty:</label>
+<input class="qty-input" id="qty-veg-ramen" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">700 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="450" data-diet="Vegetarian" data-name="Veg Tempura" data-price="150"> <img alt="Veg Tempura" height="100" src="images/tempura.jpg" width="100"/> Veg Tempura - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-tempura">Qty:</label>
+<input class="qty-input" id="qty-veg-tempura" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">450 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="176" data-diet="Vegetarian" data-name="Veg Teriyaki" data-price="160"> <img alt="Veg Teriyaki" height="100" src="images/teriyaki.jpg" width="100"/> Veg Teriyaki - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-teriyaki">Qty:</label>
+<input class="qty-input" id="qty-veg-teriyaki" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">176 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="138" data-diet="Vegetarian" data-name="Veg Udon" data-price="170"> <img alt="Veg Udon" height="100" src="images/Vegan yaki udon - Lazy Cat Kitchen.jpg" width="100"/> Veg Udon - Rs. 170<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-udon">Qty:</label>
+<input class="qty-input" id="qty-veg-udon" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">138 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article>
+<article>
+<h4> Non-Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="271" data-diet="Non-Vegetarian" data-name="Chicken Sushi" data-price="250"> <img alt="Chicken Sushi" height="100" src="images/chickensushi.jpg" width="100"/> Chicken Sushi - Rs. 250<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-sushi">Qty:</label>
+<input class="qty-input" id="qty-chicken-sushi" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">271 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="620" data-diet="Non-Vegetarian" data-name="Chicken Ramen" data-price="200"> <img alt="Chicken Ramen" height="100" src="images/chickennoodles.jpg" width="100"/> Chicken Ramen - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-ramen">Qty:</label>
+<input class="qty-input" id="qty-chicken-ramen" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">620 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li></ul>
+</article>
+</section><section>
+<h3> Italian</h3>
+<article>
+<h4> Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="294" data-diet="Vegetarian" data-name="Margherita Pizza" data-price="250"> <img alt="Margherita Pizza" height="100" src="images/margheritapizza.jpg" width="100"/> Margherita Pizza - Rs. 250<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-margherita-pizza">Qty:</label>
+<input class="qty-input" id="qty-margherita-pizza" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">294 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="237" data-diet="Vegetarian" data-name="Veggie Pizza" data-price="300"> <img alt="Veggie Pizza" height="100" src="images/vegpizza.jpg" width="100"/> Veggie Pizza - Rs. 300<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veggie-pizza">Qty:</label>
+<input class="qty-input" id="qty-veggie-pizza" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">237 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="138" data-diet="Vegetarian" data-name="Veggie Pasta" data-price="200"> <img alt="Veggie Pasta" height="100" src="images/pasta.jpg" width="100"/> Veggie Pasta - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veggie-pasta">Qty:</label>
+<input class="qty-input" id="qty-veggie-pasta" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">138 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="221" data-diet="Vegetarian" data-name="Veggie Lasagna" data-price="250"> <img alt="Veggie Lasagna" height="100" src="images/lasagna.jpg" width="100"/> Veggie Lasagna - Rs. 250<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veggie-lasagna">Qty:</label>
+<input class="qty-input" id="qty-veggie-lasagna" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">221 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="176" data-diet="Vegetarian" data-name="spaghetti" data-price="150"> <img alt="Spaghetti" height="100" src="images/spaghetti.jpg" width="100"/> spaghetti - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-spaghetti">Qty:</label>
+<input class="qty-input" id="qty-spaghetti" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">176 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article>
+<article>
+<h4> Non-Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="271" data-diet="Non-Vegetarian" data-name="Chicken Spaghetti" data-price="200"> <img alt="Chicken Spaghetti" height="100" src="images/chickenhakkanoodles.jpg" width="100"/> Chicken Spaghetti - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-spaghetti">Qty:</label>
+<input class="qty-input" id="qty-chicken-spaghetti" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">271 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="620" data-diet="Non-Vegetarian" data-name="Chicken Alfredo" data-price="250"> <img alt="Chicken Alfredo" height="100" src="images/alfredo.jpg" width="100"/> Chicken Alfredo - Rs. 250<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-alfredo">Qty:</label>
+<input class="qty-input" id="qty-chicken-alfredo" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">620 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li><li class="food-item" data-calories="350" data-diet="Non-Vegetarian" data-name="Cacciatore" data-price="300"> <img alt="Cacciatore" height="100" src="images/cacciatore.jpg" width="100"/> Cacciatore - Rs. 300<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-cacciatore">Qty:</label>
+<input class="qty-input" id="qty-cacciatore" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">350 kcal</span><span class="diet-tag non-veg">Non-Vegetarian</span></li></ul></article>
+</section><section><article>
+<h3> Salads </h3>
+<ul type="circle">
+<li class="food-item" data-calories="130" data-diet="Vegetarian" data-name="Caesar Salad" data-price="150"> <img alt="Caesar Salad" height="100" src="images/caesarsalad.jpg" width="100"/> Caesar Salad - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-caesar-salad">Qty:</label>
+<input class="qty-input" id="qty-caesar-salad" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">130 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="110" data-diet="Vegetarian" data-name="Greek Salad" data-price="160"> <img alt="Greek Salad" height="100" src="images/greek salad.jpg" width="100"/> Greek Salad - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-greek-salad">Qty:</label>
+<input class="qty-input" id="qty-greek-salad" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">110 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="156" data-diet="Vegetarian" data-name="Caprese Salad" data-price="140"> <img alt="Caprese Salad" height="100" src="images/Caprese Salad.jpg" width="100"/> Caprese Salad - Rs. 140<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-caprese-salad">Qty:</label>
+<input class="qty-input" id="qty-caprese-salad" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">156 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="18" data-diet="Vegetarian" data-name="Garden Salad" data-price="130"> <img alt="Garden Salad" height="100" src="images/greensalad.jpg" width="100"/> Garden Salad - Rs. 130<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-garden-salad">Qty:</label>
+<input class="qty-input" id="qty-garden-salad" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">18 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="15" data-diet="Vegetarian" data-name="Tossed Salad" data-price="120"> <img alt="Tossed Salad" height="100" src="images/tossedsalad.jpg" width="100"/> Tossed Salad - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-tossed-salad">Qty:</label>
+<input class="qty-input" id="qty-tossed-salad" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">15 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul></article></section><section>
+<h3> soups</h3>
+<article>
+<h4> Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="125" data-diet="Vegetarian" data-name="Tomato Soup" data-price="100"> <img alt="Tomato Soup" height="100" src="images/tomatosoup.jpg" width="100"/> Tomato Soup - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-tomato-soup">Qty:</label>
+<input class="qty-input" id="qty-tomato-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">125 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="90" data-diet="Vegetarian" data-name="Veg Manchow Soup" data-price="120"> <img alt="Veg Manchow Soup" height="100" src="images/VegManchowsoup.jpg" width="100"/> Veg Manchow Soup - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-manchow-soup">Qty:</label>
+<input class="qty-input" id="qty-veg-manchow-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">90 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="91" data-diet="Vegetarian" data-name="Veg Hot &amp; Sour Soup" data-price="130"> <img alt="Veg Hot &amp; Sour Soup" height="100" src="images/hotandsoursoup (2).jpg" width="100"/> Veg Hot &amp; Sour Soup - Rs. 130<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-veg-hot-sour-soup">Qty:</label>
+<input class="qty-input" id="qty-veg-hot-sour-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">91 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="102" data-diet="Vegetarian" data-name="Lentil Soup" data-price="110"> <img alt="Lentil Soup" height="100" src="images/lentilsoup.jpg" width="100"/> Lentil Soup - Rs. 110<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-lentil-soup">Qty:</label>
+<input class="qty-input" id="qty-lentil-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">102 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="63" data-diet="Vegetarian" data-name="Mushroom Soup" data-price="140"> <img alt="Mushroom Soup" height="100" src="images/mushroomsoup.jpg" width="100"/> Mushroom Soup - Rs. 140<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-mushroom-soup">Qty:</label>
+<input class="qty-input" id="qty-mushroom-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">63 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="125" data-diet="Vegetarian" data-name="Sweet Corn Soup" data-price="150"> <img alt="Sweet Corn Soup" height="100" src="images/sweetcornsoup.jpg" width="100"/> Sweet Corn Soup - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-sweet-corn-soup">Qty:</label>
+<input class="qty-input" id="qty-sweet-corn-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">125 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+<h4> Non-Vegetarian</h4>
+<ul type="circle">
+<li class="food-item" data-calories="130" data-diet="Non Vegetarian" data-name="Chicken Manchow Soup" data-price="160"> <img alt="Chicken Manchow Soup" height="100" src="images/chickenmanchowsoup.jpg" width="100"/> Chicken Manchow Soup - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-manchow-soup">Qty:</label>
+<input class="qty-input" id="qty-chicken-manchow-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">130 kcal</span><span class="diet-tag non-veg">Non Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Non Vegetarian" data-name="Chicken Hot &amp; Sour Soup" data-price="170"> <img alt="Chicken Hot &amp; Sour Soup" height="100" src="images/chickensoup.jpg" width="100"/> Chicken Hot &amp; Sour Soup - Rs. 170<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-hot-sour-soup">Qty:</label>
+<input class="qty-input" id="qty-chicken-hot-sour-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag non-veg">Non Vegetarian</span></li><li class="food-item" data-calories="60" data-diet="Non Vegetarian" data-name="Classic Chicken Noodle Soup" data-price="180"> <img alt="Classic Chicken Noodle Soup" height="100" src="images/chickennoodlesoup.jpg" width="100"/> Classic Chicken Noodle Soup - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-classic-chicken-noodle-soup">Qty:</label>
+<input class="qty-input" id="qty-classic-chicken-noodle-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">60 kcal</span><span class="diet-tag non-veg">Non Vegetarian</span></li><li class="food-item" data-calories="132" data-diet="Non Vegetarian" data-name="Chicken and Corn Soup" data-price="160"> <img alt="Chicken and Corn Soup" height="100" src="images/Chicken Corn Soup.jpg" width="100"/> Chicken and Corn Soup - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-chicken-and-corn-soup">Qty:</label>
+<input class="qty-input" id="qty-chicken-and-corn-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">132 kcal</span><span class="diet-tag non-veg">Non Vegetarian</span></li><li class="food-item" data-calories="99" data-diet="Non Vegetarian" data-name="Beef Barley Soup" data-price="170"> <img alt="Beef Barley Soup" height="100" src="images/beefsoup.jpg" width="100"/> Beef Barley Soup - Rs. 170<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-beef-barley-soup">Qty:</label>
+<input class="qty-input" id="qty-beef-barley-soup" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">99 kcal</span><span class="diet-tag non-veg">Non Vegetarian</span></li></ul>
+</article>
+</section><section>
+<article>
+<h3> Desserts</h3>
+<ul type="circle">
+<li class="food-item" data-calories="200" data-diet="Vegetarian" data-name="Ice Cream" data-price="100"> <img alt="Ice Cream" height="100" src="images/icecream.jpg" width="100"/> Ice Cream - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-ice-cream">Qty:</label>
+<input class="qty-input" id="qty-ice-cream" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">200 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="220" data-diet="Vegetarian" data-name="Cheese Cake" data-price="200"> <img alt="Cheese Cake" height="100" src="images/cheesecake.jpg" width="100"/> Cheese Cake - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-cheese-cake">Qty:</label>
+<input class="qty-input" id="qty-cheese-cake" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">220 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="340" data-diet="Vegetarian" data-name="Choco Lava Cake" data-price="180"> <img alt="Choco Lava Cake" height="100" src="images/Chocolate Lava Cake.jpg" width="100"/> Choco Lava Cake - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-choco-lava-cake">Qty:</label>
+<input class="qty-input" id="qty-choco-lava-cake" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">340 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Choco Chip Cookies" data-price="100"> <img alt="Choco Chip Cookies" height="100" src="images/Chocochipcookies.jpg" width="100"/> Choco Chip Cookies - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-choco-chip-cookies">Qty:</label>
+<input class="qty-input" id="qty-choco-chip-cookies" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="260" data-diet="Vegetarian" data-name="Pastry" data-price="150"> <img alt="Pastry" height="100" src="images/pastry.jpg" width="100"/> Pastry - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-pastry">Qty:</label>
+<input class="qty-input" id="qty-pastry" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">260 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="230" data-diet="Vegetarian" data-name="Brownie" data-price="120"> <img alt="Brownie" height="100" src="images/brownie.jpg" width="100"/> Brownie - Rs. 120<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-brownie">Qty:</label>
+<input class="qty-input" id="qty-brownie" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">230 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="420" data-diet="Vegetarian" data-name="Muffin" data-price="80"> <img alt="Muffin" height="100" src="images/muffins.jpg" width="100"/> Muffin - Rs. 80<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-muffin">Qty:</label>
+<input class="qty-input" id="qty-muffin" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">420 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="240" data-diet="Vegetarian" data-name="Donut" data-price="50"> <img alt="Donut" height="100" src="images/donuts.jpg" width="100"/> Donut - Rs. 50<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-donut">Qty:</label>
+<input class="qty-input" id="qty-donut" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">240 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="142" data-diet="Vegetarian" data-name="Pudding" data-price="100"> <img alt="Pudding" height="100" src="images/pudding.jpg" width="100"/> Pudding - Rs. 100<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-pudding">Qty:</label>
+<input class="qty-input" id="qty-pudding" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">142 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="213" data-diet="Vegetarian" data-name="Custard" data-price="90"> <img alt="Custard" height="100" src="images/fruitcustard.jpg" width="100"/> Custard - Rs. 90<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-custard">Qty:</label>
+<input class="qty-input" id="qty-custard" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">213 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article>
+</section><section>
+<article>
+<h3> Beverages</h3>
+<article>
+<h4> Hot Beverages</h4><ul type="circle">
+
+<li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Masala Tea" data-price="40"><img alt="Masala Tea" height="100" src="images/plaintea.jpg" width="100"/> Masala Tea - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-masala-tea">Qty:</label>
+<input class="qty-input" id="qty-masala-tea" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Rose Tea" data-price="50"> <img alt="Rose Tea" height="100" src="images/rosetea.jpg" width="100"/> Rose Tea - Rs. 50<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-rose-tea">Qty:</label>
+<input class="qty-input" id="qty-rose-tea" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Green Tea" data-price="60"> <img alt="Green Tea" height="100" src="images/greentea.jpg" width="100"/> Green Tea - Rs. 60<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-green-tea">Qty:</label>
+<input class="qty-input" id="qty-green-tea" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="20" data-diet="Vegetarian" data-name="Lemon Tea" data-price="40"> <img alt="Lemon Tea" height="100" src="images/lemontea (2).jpg" width="100"/> Lemon Tea - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-lemon-tea">Qty:</label>
+<input class="qty-input" id="qty-lemon-tea" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">20 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="120" data-diet="Vegetarian" data-name="Cappucino" data-price="180"> <img alt="Cappucino" height="100" src="images/cappucino.jpg" width="100"/> Cappucino - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-cappucino">Qty:</label>
+<input class="qty-input" id="qty-cappucino" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">120 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="5" data-diet="Vegetarian" data-name="Espresso" data-price="150"> <img alt="Espresso" height="100" src="images/espresso.jpg" width="100"/> Espresso - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-espresso">Qty:</label>
+<input class="qty-input" id="qty-espresso" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">5 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="200" data-diet="Vegetarian" data-name="Latte" data-price="200"> <img alt="Latte" height="100" src="images/latte.jpg" width="100"/> Latte - Rs. 200<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-latte">Qty:</label>
+<input class="qty-input" id="qty-latte" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">200 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="250" data-diet="Vegetarian" data-name="Americano" data-price="160"> <img alt="Americano" height="100" src="images/americano.jpg" width="100"/> Americano - Rs. 160<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-americano">Qty:</label>
+<input class="qty-input" id="qty-americano" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">250 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article>
+<article>
+<h4> Cold Beverages</h4>
+<ul type="circle">
+<li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Cold Coffee" data-price="150"> <img alt="Cold Coffee" height="100" src="images/coldcoffee.jpg" width="100"/> Cold Coffee - Rs. 150<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-cold-coffee">Qty:</label>
+<input class="qty-input" id="qty-cold-coffee" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="1" data-diet="Vegetarian" data-name="Iced Tea" data-price="50"> <img alt="Iced Tea" height="100" src="images/icedtea.jpg" width="100"/> Iced Tea - Rs. 50<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-iced-tea">Qty:</label>
+<input class="qty-input" id="qty-iced-tea" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">1 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="40" data-diet="Vegetarian" data-name="Lemonade" data-price="40"> <img alt="Lemonade" height="100" src="images/lemonade.jpg" width="100"/> Lemonade - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-lemonade">Qty:</label>
+<input class="qty-input" id="qty-lemonade" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">40 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="150" data-diet="Vegetarian" data-name="Cold Drinks" data-price="30"> <img alt="Cold Drinks" height="100" src="images/colddrink.jpg" width="100"/> Cold Drinks - Rs. 30<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-cold-drinks">Qty:</label>
+<input class="qty-input" id="qty-cold-drinks" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">150 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="490" data-diet="Vegetarian" data-name="Hazelnut Frappe" data-price="180"> <img alt="Hazelnut Frappe" height="100" src="images/hazelnutfrappe.jpg" width="100"/> Hazelnut Frappe - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-hazelnut-frappe">Qty:</label>
+<input class="qty-input" id="qty-hazelnut-frappe" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">490 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="163" data-diet="Vegetarian" data-name="Irish Frappe" data-price="180"> <img alt="Irish Frappe" height="100" src="images/irishfrappe.jpg" width="100"/> Irish Frappe - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-irish-frappe">Qty:</label>
+<input class="qty-input" id="qty-irish-frappe" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">163 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="225" data-diet="Vegetarian" data-name="Mocha Frappe" data-price="180"> <img alt="Mocha Frappe" height="100" src="images/mochafrappe.jpg" width="100"/> Mocha Frappe - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-mocha-frappe">Qty:</label>
+<input class="qty-input" id="qty-mocha-frappe" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">225 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="420" data-diet="Vegetarian" data-name="Caramel Frappe" data-price="180"> <img alt="Caramel Frappe" height="100" src="images/caramel.jpg" width="100"/> Caramel Frappe - Rs. 180<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-caramel-frappe">Qty:</label>
+<input class="qty-input" id="qty-caramel-frappe" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">420 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="110" data-diet="Vegetarian" data-name="Orange Juice" data-price="40"> <img alt="Orange Juice" height="100" src="images/orangejuice.jpg" width="100"/> Orange Juice - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-orange-juice">Qty:</label>
+<input class="qty-input" id="qty-orange-juice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">110 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="130" data-diet="Vegetarian" data-name="Mango Juice" data-price="40"> <img alt="Mango Juice" height="100" src="images/mango juice.jpg" width="100"/> Mango Juice - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-mango-juice">Qty:</label>
+<input class="qty-input" id="qty-mango-juice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">130 kcal</span><span class="diet-tag veg">Vegetarian</span></li><li class="food-item" data-calories="100" data-diet="Vegetarian" data-name="Mixed Fruit Juice" data-price="40"> <img alt="Mixed Fruit Juice" height="100" src="images/mixedfruitjuice.jpg" width="100"/> Mixed Fruit Juice - Rs. 40<form action="#" class="item-form" method="get" style="display:inline;">
+<label for="qty-mixed-fruit-juice">Qty:</label>
+<input class="qty-input" id="qty-mixed-fruit-juice" max="10" min="1" name="quantity" style="width: 40px;" type="number" value="1"/>
+<button type="button">Add to Cart</button>
+<button type="button">Order</button>
+</form><span class="calories">100 kcal</span><span class="diet-tag veg">Vegetarian</span></li></ul>
+</article>
+<article>
+<h5> Extra Flavors</h5><p> (to be mentioned in customisation section)</p>
+<ul type="circle">
+<li class="food-item" data-name="Vanilla" data-price="20"> Vanilla - Rs. 20<form action="#" class="item-form" method="get"></li><li class="food-item" data-name="Chocolate" data-price="20"> Chocolate - Rs. 20<form action="#" class="item-form" method="get"></li><li class="food-item" data-name="Strawberry" data-price="20"> Strawberry - Rs. 20<form action="#" class="item-form" method="get"> </li><li class="food-item" data-name="Caramel" data-price="20"> Caramel - Rs. 20<form action="#" class="item-form" method="get"></li><li class="food-item" data-name="Hazelnut" data-price="20"> Hazelnut - Rs. 20<form action="#" class="item-form" method="get"></li></ul>
+</article>
+</article><hr/></section></section>
+</main>
+<section>
+<aside id="token-section">
+<h2>Lunch Token</h2>
+<div class="hidden" id="token-display-box">
+<p><strong>Token Number:</strong> <span id="token-number">--</span></p>
+<p><strong>Pickup Counter:</strong> <span id="counter-allocation">--</span></p>
+<p><strong>Customer:</strong> <span id="confirmed-customer">--</span></p>
+<p><strong>Pickup Date:</strong> <span id="confirmed-date">--</span></p>
+<p><strong>Pickup Time:</strong> <span id="confirmed-time">--</span></p>
+<p><strong>Phone:</strong> <span id="confirmed-phone">--</span></p>
+<p><strong>Amount Paid:</strong> ₹<span id="confirmed-amount">0</span></p>
+</div>
+<p id="token-placeholder">Your Lunch token will appear here after ordering.</p>
+</aside>
+</section>
+<hr/>
+
+<section id="reviews-section" class="reviews-panel">
+    <h2>Customer Reviews</h2>
+    <p>Share your experience with our cafeteria.</p>
+    <form id="review-form">
+        <label for="reviewer-name">Your Name</label><br>
+        <input id="reviewer-name" name="reviewerName" type="text" placeholder="Enter your name" required minlength="2"><br>
+        <label for="review-rating">Your Rating</label><br>
+        <select id="review-rating" name="rating" required><br>
+            <option value="">Select rating</option>
+            <option value="5">★★★★★ - Excellent</option>
+            <option value="4">★★★★ - Very Good</option>
+            <option value="3">★★★ - Good</option>
+            <option value="2">★★ - Fair</option>
+            <option value="1">★ - Poor</option>
+        </select><br>
+        <label for="review-message">Your Review</label><br>
+        <textarea id="review-message" name="reviewMessage"  placeholder="Write your feedback..." required minlength="5"></textarea><br>
+        <button type="submit">Submit Review</button>
+    </form>
+    <div id="reviews-list" aria-live="polite"></div>
+</section>
+<footer id="contact">
+<h2>Contact Information</h2>
+<form id="contact-form">
+
+<b> contact us at:</b>
+<p>Address: 123 Main Street, City, State, ZIP Code</p>
+<p>Phone: (123) 456-7890</p>
+</footer>
+<hr/>
+<aside>
+<h2>Cafeteria Notice</h2>
+<p> Please note that the cafeteria will be closed on public holidays. We apologize for any inconvenience caused.Check the menu before ordering your lunch</p>
+</aside>
+</body>
+</html>

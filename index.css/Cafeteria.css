@@ -1,0 +1,747 @@
+/* ==========================================
+   SMART CAFETERIA PORTAL
+   ORIGINAL GREEN THEME + NEW FEATURES
+========================================== */
+
+/* 1. CSS VARIABLES */
+
+:root {
+    --green: #18764b;
+    --dark-green: #104b32;
+    --light-green: #e7f5eb;
+    --background: #f5f9f5;
+    --white: #f2eded;
+    --text: #26352c;
+    --muted: #718078;
+    --border: #eae3e3;
+    --shadow: 0 5px 20px rgba(20, 70, 45, 0.09);
+}
+
+/* 2. UNIVERSAL SELECTOR */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* 3. HEADINGS */
+
+h1, h2, h3, h4, h5 {
+    color: var(--dark-green);
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 27px;
+    margin-bottom: 18px;
+}
+
+h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+}
+
+h4 {
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+/* 4. HEADER */
+
+header {
+    background: linear-gradient(
+        135deg,
+        #104b32,
+        #218653
+    );
+    color: white;
+    text-align: center;
+    padding: 45px 20px;
+}
+
+header h1 {
+    color: white;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #e1f4e7;
+    font-size: 17px;
+}
+
+/* 5. NAVIGATION */
+
+nav {
+    background: var(--dark-green);
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #a9e7bd;
+}
+
+/* 6. MAIN CONTENT */
+
+main {
+    width: 92%;
+    max-width: 1350px;
+    margin: 30px auto;
+}
+
+main > section {
+    margin-bottom: 30px;
+}
+
+main > section > h2 {
+    border-left: 5px solid var(--green);
+    padding-left: 14px;
+}
+
+/* 7. HORIZONTAL LINES */
+
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 25px 0;
+}
+
+/* 8. CAFETERIA OCCUPANCY */
+
+#occupancy-widget {
+    max-width: 1350px;
+    margin: 25px auto;
+    width: 92%;
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+#occupancy-text {
+    color: var(--green);
+    font-weight: bold;
+}
+
+.progress-bar-container {
+    background: #dce9df;
+    height: 12px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+#occupancy-fill {
+    height: 100%;
+    background: var(--green);
+    border-radius: 20px;
+    transition: width 0.4s ease;
+}
+
+/* 9. WALLET */
+
+#wallet {
+    background: var(--light-green);
+    border: 1px solid #c9e6d1;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+#wallet-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#wallet-balance {
+    color: var(--green);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* 10. FOOD CART */
+
+#cart-section {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+#cart-items-list {
+    padding-left: 25px;
+    margin: 15px 0;
+}
+
+#cart-total {
+    color: var(--green);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 11. MENU ARTICLES */
+
+#menu {
+    scroll-margin-top: 10px;
+}
+
+article {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    margin: 22px 0;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+article:hover {
+    box-shadow: 0 9px 25px rgba(20, 70, 45, 0.12);
+}
+
+article h3 {
+    background: var(--light-green);
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--green);
+}
+
+article h4 {
+    color: var(--green);
+}
+
+/* 12. FOOD LIST */
+
+article ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+article li {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    background: #f8fbf8;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    flex-wrap: wrap;
+    transition: 0.3s;
+}
+
+article li:hover {
+    background: var(--light-green);
+    border-color: #a5d6b3;
+}
+
+/* 13. FOOD IMAGES */
+
+article li img {
+    width: 95px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 9px;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+}
+
+article li img:hover {
+    transform: scale(1.15);
+}
+
+/* 14. FOOD FORMS */
+
+article form {
+    display: flex !important;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding: 8px 5px 15px;
+}
+
+article form label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+article form input[type="number"] {
+    width: 65px !important;
+    padding: 8px;
+    margin: 0;
+}
+
+/* 15. CALORIES */
+
+.calories {
+    display: inline-block;
+    background: #fff4dc;
+    color: #8a5b12;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 3px;
+}
+
+/* 16. DIET TAGS */
+
+.diet-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 3px;
+}
+
+.diet-tag.veg {
+    background: #e1f5e6;
+    color: #176b37;
+}
+
+.diet-tag.non-veg,
+.diet-tag.nonveg,
+.diet-tag.non {
+    background: #ffe6e6;
+    color: #a52a2a;
+}
+
+/* 17. BUTTONS */
+
+button {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: var(--dark-green);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #86c99b;
+    outline-offset: 3px;
+}
+
+/* 18. INPUTS AND TEXTAREA */
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: 14px;
+    border: 1px solid #cbd9cf;
+    border-radius: 8px;
+    padding: 11px;
+    max-width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #8bc99d;
+    border-color: var(--green);
+}
+
+/* 19. TOKEN SECTION */
+
+#token-section {
+    background: linear-gradient(
+        135deg,
+        #e1f4e6,
+        white
+    );
+    padding: 30px;
+    border: 2px dashed var(--green);
+    border-radius: 15px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+#token-display-box {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px auto;
+    max-width: 450px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#token-number {
+    color: var(--green);
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none !important;
+    
+}
+
+/* 20. CONTACT SECTION */
+
+#contact {
+    background: var(--dark-green);
+    color: white;
+    padding: 35px;
+}
+
+#contact h2,
+#contact b {
+    color: white;
+}
+
+#contact p {
+    color: #e2f1e6;
+    margin: 10px 0;
+}
+
+#contact form {
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+#contact form input,
+#contact form textarea {
+    width: 100%;
+    display: block;
+    margin: 8px 0 18px;
+}
+
+#contact form button {
+    background: #79c995;
+    color: #103d28;
+}
+
+#contact form button:hover {
+    background: white;
+}
+
+/* ==========================================
+   21. NEW CHECKOUT SECTION
+========================================== */
+
+.checkout-panel {
+    background: white;
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.checkout-panel h2 {
+    color: var(--dark-green);
+    border-left: 5px solid var(--green);
+    padding-left: 14px;
+}
+
+.checkout-summary {
+    background: var(--light-green);
+    border: 1px solid #c9e6d1;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.checkout-summary p {
+    margin: 8px 0;
+}
+
+#checkout-form {
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+#checkout-form label {
+    display: block;
+    font-weight: 600;
+    margin: 12px 0 5px;
+    color: var(--dark-green);
+}
+
+#checkout-form input,
+#checkout-form select,
+#checkout-form textarea {
+    width: 100%;
+    display: block;
+    margin-bottom: 12px;
+    background: white;
+}
+
+#checkout-form button {
+    margin-top: 15px;
+}
+
+.secondary-button {
+    background: #718078;
+    margin-left: 8px;
+}
+
+.secondary-button:hover {
+    background: #4d5b52;
+}
+
+/* ==========================================
+   22. ORDER CONFIRMATION
+========================================== */
+
+#confirmed-customer {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px auto;
+    max-width: 500px;
+    text-align: left;
+    line-height: 1.9;
+}
+
+#token-section h2 {
+    color: var(--dark-green);
+}
+
+#token-display-box {
+    border: 1px solid var(--border);
+}
+
+/* ==========================================
+   23. CUSTOMER REVIEWS
+========================================== */
+
+.reviews-panel {
+    background: rgb(226, 241, 226);
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.reviews-panel h2 {
+    border-left: 5px solid var(--green);
+    padding-left: 14px;
+}
+
+.review-card {
+    background: #f8fbf8;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    margin: 15px 0;
+}
+
+.review-card h4 {
+    color: var(--green);
+    margin: 0 0 8px;
+}
+
+.review-card p {
+    margin: 6px 0;
+}
+
+#review-form {
+    max-width: 650px;
+    margin: 20px auto;
+}
+
+#review-form label {
+    display: block;
+    font-weight: 600;
+    margin: 12px 0 5px;
+}
+
+#review-form input,
+#review-form select,
+#review-form textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+#review-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* 24. FOOTER */
+
+footer {
+    text-align: center;
+    background: var(--dark-green);
+    color: white;
+    padding: 30px 20px;
+}
+
+/* 25. CAFETERIA NOTICE */
+
+body > aside {
+    background: var(--light-green);
+    padding: 25px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+/* ==========================================
+   26. RESPONSIVE TABLET
+========================================== */
+
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+
+    nav ul {
+        gap: 18px;
+    }
+
+    main {
+        width: 94%;
+    }
+
+    article {
+        padding: 17px;
+    }
+
+    article li img {
+        width: 80px;
+        height: 75px;
+    }
+
+    .checkout-panel,
+    .reviews-panel {
+        padding: 20px;
+    }
+}
+
+/* ==========================================
+   27. RESPONSIVE MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+    header {
+        padding: 30px 12px;
+    }
+
+    header h1 {
+        font-size: 25px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    article li {
+        gap: 9px;
+        font-size: 14px;
+    }
+
+    article li img {
+        width: 70px;
+        height: 70px;
+    }
+
+    article form {
+        gap: 6px;
+    }
+
+    article form button {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    #wallet,
+    #cart-section,
+    #token-section {
+        padding: 18px;
+    }
+
+    #contact {
+        padding: 22px 15px;
+    }
+
+    .checkout-panel,
+    .reviews-panel {
+        padding: 16px;
+    }
+
+    .secondary-button {
+        margin: 8px 0 0;
+    }
+
+    #checkout-form button,
+    #review-form button {
+        width: 100%;
+    }
+}
